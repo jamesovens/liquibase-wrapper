@@ -6,13 +6,12 @@ class Liquibase {
 
 	constructor(params = {}) {
 		const defaultParams = {
-			// Default Parameters
-			liquibase: path.join(__dirname, './liquibase-4.2.2/liquibase'),
-			changeLogFile: path.join(__dirname, '"<PATH TO YOUR MASTER CHANGELOG FILE>"'),
-			url: '"jdbc:<DB ENGINE>://<HOST>:<PORT>;database=<DATABASE>;"',
-			username: '<USERNAME>',
-			password: '<PASSWORD>',
-			classpath: path.join(__dirname, './Drivers/mysql-connector-java-5.1.49.jar')
+			liquibase: path.join(__dirname, './liquibase/liquibase-4.2.2/liquibase'),
+			// changeLogFile: path.join(__dirname, '"<PATH TO YOUR MASTER CHANGELOG FILE>"'),
+			// url: '"jdbc:<DB ENGINE>://<HOST>:<PORT>;database=<DATABASE>;"',
+			// username: '<USERNAME>',
+			// password: '<PASSWORD>',
+			// classpath: path.join(__dirname, './mysql/mysql-connector-java-5.1.49.jar')
 		};
 		this.params = Object.assign({}, defaultParams, params);
 	}

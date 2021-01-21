@@ -40,7 +40,7 @@
   "bugs": {
     "url": "https://github.com/jamesovens/liquibase-wrapper/issues"
   },
-  "homepage": "https://github.com/jamesovens/liquibase-wrapper#readme",
+  "homepage": "https://github.com/jamesovens/liquibase-wrapper#README",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
