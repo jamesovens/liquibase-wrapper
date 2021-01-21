@@ -121,9 +121,10 @@ await liquibase(liquibaseConfig).run("update");
 ```
 
 ## Tests
-There are no tests for this package 😱
+There are no tests for this package 😱.
+
 The reason for this is that the actual JS code in here is tiny and came from an established package (see Credit section), and most of the work of this package is the management of the various libs and drivers.
-Its very simple to verify that this porject works manually, however if I do come back and make more changes (other than adding a few more JDBC drivers) I will need to add tests at that point.
+Its very simple to verify that this project works manually, however if I do come back and make more changes (other than adding a few more JDBC drivers) I will need to add tests at that point.
 
 ## Future Improvements
 The most difficult aspect of this library is allowing any database engine (any JDBC driver JAR) to be used whilst not requiring the user of the package to have to add that JAR file themselves either to their repository or to their environment (e.g. inside a running container).
@@ -138,7 +139,7 @@ Ideally a better solution would allow this package to be installed where it only
 ## Credit
 This package was originally forked from: https://github.com/liquibase/node-liquibase, which was in turn originally forked from: https://github.com/pablodenadai/node-liquibase
 I have republished it because:
-* I wanted to use this for a MySQL database, but for some strange reason there were no MySQL drivers included in the package despite MySQL being one of the most popular database engines
+* I wanted to use this for a MySQL database, but for some strange reason there were no MySQL drivers included in the original package despite MySQL being one of the most popular database engines
 * There was no way to raise an issue or get in contact on the https://github.com/liquibase/node-liquibase repo (issues are disabled there at the time of writing)
 * I was short on time and needed to use this for an urgent project
 * I made quite a few changes to the whole project and I'm not sure if the original package maintainers are even actively working on that package anymore
