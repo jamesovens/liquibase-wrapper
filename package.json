@@ -7,15 +7,12 @@
     "lib"
   ],
   "scripts": {
-    "build:lib": "npm run build:js && npm run copy:dependencies",
+    "build:lib": "npm run build:js && npm run copy:lib",
     "build:js": "babel src --out-dir lib",
     "watch:js": "babel src --out-dir lib --watch",
-    "copy:dependencies": "npm run copy:liquibase && npm run copy:drivers && npm run copy:change-log-examples",
-    "copy:liquibase": "ncp ./src/liquibase-4.2.2 ./lib/liquibase-4.2.2",
-    "copy:drivers": "ncp ./src/drivers ./lib/Drivers",
-    "copy:change-log-examples": "ncp ./src/change-log-examples ./lib/change-log-examples",
+    "copy:lib": "ncp ./src/lib/ ./lib/",
     "clean:lib": "rimraf ./lib/**",
-    "start": "npm run build && npm run watch:lib",
+    "start": "npm run copy:lib && npm run watch:lib",
     "watch:lib": "nodemon lib/index.js",
     "semantic-release": "semantic-release"
   },
@@ -32,16 +29,19 @@
     "js",
     "database",
     "sql",
-    "migration"
+    "migration",
+    "mysql",
+    "mssql",
+    "postgresql",
+    "oracle"
   ],
-  "author": "liquibase",
+  "author": "jamesovens",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jamesovens/liquibase-wrapper/issues"
   },
   "homepage": "https://github.com/jamesovens/liquibase-wrapper#readme",
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
