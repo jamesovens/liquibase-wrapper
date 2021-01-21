@@ -5,14 +5,26 @@ const path = require('path');
 class Liquibase {
 
 	constructor(params = {}) {
+		if (!params.username) {
+			console.error("liquibase-wrapper - 'username' is missing. Liquibase wrapper requires the name of the user with correct access right to the database, e.g. username: 'root'");
+			process.exit(1);
+		}
+
+		if (!params.password) {
+			console.warn("liquibase-wrapper - 'password' is missing. Liquibase will attempt to connect to the database without using a password.");
+		}
+
+		if (!params.classpath) {
+			console.error("liquibase-wrapper - 'classpath' is missing. Liquibase wrapper requires the path to the JDBC driver, e.g. classpath: './mysql/mysql-connector-java-5.1.49.jar'");
+			process.exit(1);
+		}
+
+		params.classpath = path.join(__dirname, params.classpath)
+
 		const defaultParams = {
 			liquibase: path.join(__dirname, './liquibase/liquibase-4.2.2/liquibase'),
-			// changeLogFile: path.join(__dirname, '"<PATH TO YOUR MASTER CHANGELOG FILE>"'),
-			// url: '"jdbc:<DB ENGINE>://<HOST>:<PORT>;database=<DATABASE>;"',
-			// username: '<USERNAME>',
-			// password: '<PASSWORD>',
-			// classpath: path.join(__dirname, './mysql/mysql-connector-java-5.1.49.jar')
 		};
+
 		this.params = Object.assign({}, defaultParams, params);
 	}
 
