@@ -1,11 +1,11 @@
 ## What does it do?
-This package takes the standard Liquibase JAR and a series of JDBC drivers for popular DB engines and wraps so that they can be interacted with from within a node.js project.
+This package takes the standard Liquibase JAR and a series of JDBC drivers for popular DB engines and wraps them so that they can be interacted with from within a node.js project.
 
 ### Example Usage
 ```
 await liquibase(liquibaseConfig).run("update");
 ```
-The above is the equivalent of calling the update command on the Liquibase JAR itself.
+The above is the equivalent of calling the update command on the Liquibase JAR itself, however you did not have to install or manage the Liquibase JAR nor the JDBC drivers and you can call Liquibase from within your running node.js application.
 
 ## Install
 
@@ -60,7 +60,7 @@ try {
 ```
 
 ## Liquibase Commands
-You can pass in the run function any command you like and it will be passed to the Liquibase JAR which means this package is as flexible as the Liquibase standard tool.
+You can pass into the run function any command you like and it will be passed to the Liquibase JAR which means this package is as flexible as the Liquibase standard tool.
 Liquibase command documentation can be found here: https://docs.liquibase.com/commands/home.html
 
 ## Config
@@ -101,7 +101,7 @@ The options that you can specify are listed below:
 * `oracle/ojdbc10.jar`
 * `oracle/ojdbc11.jar`
 
-#### Oracle
+#### PostgreSQL
 * `postgres/postgresql-42.2.18.jar`
 * `postgres/postgresql-42.2.18.jre6.jar`
 * `postgres/postgresql-42.2.18.jre7.jar`
@@ -120,12 +120,25 @@ const liquibaseConfig = {
 await liquibase(liquibaseConfig).run("update");
 ```
 
+## Tests
+There are no tests for this package 😱
+The reason for this is that the actual JS code in here is tiny and came from an established package (see Credit section), and most of the work of this package is the management of the various libs and drivers.
+Its very simple to verify that this porject works manually, however if I do come back and make more changes (other than adding a few more JDBC drivers) I will need to add tests at that point.
+
 ## Future Improvements
 The most difficult aspect of this library is allowing any database engine (any JDBC driver JAR) to be used whilst not requiring the user of the package to have to add that JAR file themselves either to their repository or to their environment (e.g. inside a running container).
-That is why I have taken a handful of the most popular database providers, and then taken a handful of version of JDBC JARs for each provider in order to cover most people's use cases.
+That is why I have taken a handful of the most popular database providers, and then taken a handful of different versions of JDBC JARs for each provider in order to cover most people's use cases.
 
 The problem with this is:
 * It bloats the package having so many JARs, most of which will not be used by the user as the user likely connects to one database at a time for most applications.
-* If you use a vendor that I have not included, or need a JDBC version for that vendor I have not included you have no way to fix this (other than requesting a change to this library).
+* If you use a vendor that I have not included, or need a particular JAR version for the vendor I have not included you have no way to fix this (other than requesting a change to this library or forking and republishing it).
 
-Ideally a better solution would allow this package to be installed where it only contains the one JDBC JAR file you require for your database, but I'm unsure how to do that currently.
+Ideally a better solution would allow this package to be installed where it only contains the one JDBC JAR file you require for your database, but I'm unsure how to do that currently. Suggestions or PRs are welcome.
+
+## Credit
+This package was originally forked from: https://github.com/liquibase/node-liquibase, which was in turn originally forked from: https://github.com/pablodenadai/node-liquibase
+I have republished it because:
+* I wanted to use this for a MySQL database, but for some strange reason there were no MySQL drivers included in the package despite MySQL being one of the most popular database engines
+* There was no way to raise an issue or get in contact on the https://github.com/liquibase/node-liquibase repo (issues are disabled there at the time of writing)
+* I was short on time and needed to use this for an urgent project
+* I made quite a few changes to the whole project and I'm not sure if the original package maintainers are even actively working on that package anymore
