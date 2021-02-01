@@ -6,12 +6,11 @@ class Liquibase {
 
 	constructor(params = {}) {
 		if (!params.username) {
-			console.error("liquibase-wrapper - 'username' is missing. Liquibase wrapper requires the name of the user with correct access right to the database, e.g. username: 'root'");
-			process.exit(1);
+			console.log("liquibase-wrapper - 'username' is missing. Liquibase will attempt to connect to the database with a blank username.");
 		}
 
 		if (!params.password) {
-			console.warn("liquibase-wrapper - 'password' is missing. Liquibase will attempt to connect to the database without using a password.");
+			console.log("liquibase-wrapper - 'password' is missing. Liquibase will attempt to connect to the database without using a password.");
 		}
 
 		if (!params.classpath) {
