@@ -21,7 +21,7 @@ class Liquibase {
 		params.classpath = path.join(__dirname, params.classpath)
 
 		const defaultParams = {
-			liquibase: path.join(__dirname, './liquibase/liquibase-4.2.2/liquibase'),
+			liquibase: path.join(__dirname, './liquibase/liquibase-4.3.1/liquibase'),
 		};
 
 		this.params = Object.assign({}, defaultParams, params);
